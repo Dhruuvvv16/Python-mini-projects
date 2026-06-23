@@ -20,3 +20,15 @@ def load_expenses():
         return list(csv.DictReader(f))
 
 
+def add_expense(args):
+    ensure_file()
+    row = {
+        "date": datetime.now().strftime("%Y-%m-%d"),
+        "amount": f"{args.amount:.2f}",
+        "category": args.category,
+        "note": args.note or "",
+    }
+    with open(DATA_FILE, "a", newline="", encoding="utf-8") as f:
+        csv.DictWriter(f, fieldnames=FIELDS).writerow(row)
+    print(f"Added expense: {row['date']} | {row['amount']} | {row['category']} | {row['note']}")
+
