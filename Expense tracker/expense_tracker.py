@@ -32,3 +32,19 @@ def add_expense(args):
         csv.DictWriter(f, fieldnames=FIELDS).writerow(row)
     print(f"Added expense: {row['date']} | {row['amount']} | {row['category']} | {row['note']}")
 
+
+def list_expenses(args):
+    rows = load_expenses()
+    if not rows:
+        print("No expenses recorded yet.")
+        return
+    print(f"\n{'Date':<12}{'Amount':<10}{'Category':<15}{'Note'}")
+    print("-" * 55)
+    total = 0.0
+    for r in rows:
+        print(f"{r['date']:<12}{r['amount']:<10}{r['category']:<15}{r['note']}")
+        total += float(r["amount"])
+    print("-" * 55)
+    print(f"{'TOTAL':<12}{total:.2f}\n")
+
+
