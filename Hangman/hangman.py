@@ -76,3 +76,9 @@ STAGES = [
 MAX_WRONG = len(STAGES) - 1
 
 
+def pick_word():
+    category = random.choice(list(WORDS.keys()))
+    word = random.choice(WORDS[category])
+    return word, category
+
+
