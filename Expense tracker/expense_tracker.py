@@ -13,3 +13,10 @@ def ensure_file():
         with open(DATA_FILE, "w", newline="", encoding="utf-8") as f:
             csv.DictWriter(f, fieldnames=FIELDS).writeheader()
 
+
+def load_expenses():
+    ensure_file()
+    with open(DATA_FILE, "r", newline="", encoding="utf-8") as f:
+        return list(csv.DictReader(f))
+
+
