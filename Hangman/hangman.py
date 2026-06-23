@@ -128,3 +128,22 @@ def play():
     return False
 
 
+def main():
+    print("=" * 40)
+    print("   HANGMAN")
+    print("=" * 40)
+
+    wins = 0
+    games = 0
+
+    while True:
+        won = play()
+        games += 1
+        wins += int(won)
+
+        print(f"\nScore: {wins}/{games} games won.")
+        again = input("Play again? (y/n): ").strip().lower()
+        if again != "y":
+            print("Thanks for playing!")
+            break
+
