@@ -97,3 +97,34 @@ def get_guess(guessed):
             continue
         return raw
 
+
+def play():
+    word, category = pick_word()
+    guessed = set()
+    wrong = 0
+
+    print(f"\nCategory: {category} | Word length: {len(word)}")
+
+    while wrong < MAX_WRONG:
+        print(STAGES[wrong])
+        print("Word:", display_word(word, guessed))
+        print("Guessed letters:", ", ".join(sorted(guessed)) or "none")
+
+        if all(letter in guessed for letter in word):
+            print(f"\nYou guessed it! The word was '{word}'.")
+            return True
+
+        letter = get_guess(guessed)
+        guessed.add(letter)
+
+        if letter not in word:
+            wrong += 1
+            print("Wrong guess!")
+        else:
+            print("Nice, that letter is in the word!")
+
+    print(STAGES[wrong])
+    print(f"\nOut of tries! The word was '{word}'.")
+    return False
+
+
