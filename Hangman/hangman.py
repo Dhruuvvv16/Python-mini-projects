@@ -82,3 +82,7 @@ def pick_word():
     return word, category
 
 
+def display_word(word, guessed):
+    return " ".join(letter if letter in guessed else "_" for letter in word)
+
+
