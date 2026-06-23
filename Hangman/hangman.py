@@ -86,3 +86,14 @@ def display_word(word, guessed):
     return " ".join(letter if letter in guessed else "_" for letter in word)
 
 
+def get_guess(guessed):
+    while True:
+        raw = input("Guess a letter: ").strip().lower()
+        if len(raw) != 1 or not raw.isalpha():
+            print("Please enter a single letter.")
+            continue
+        if raw in guessed:
+            print("You already guessed that letter.")
+            continue
+        return raw
+
