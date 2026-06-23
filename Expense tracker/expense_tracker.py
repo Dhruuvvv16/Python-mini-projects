@@ -73,3 +73,25 @@ def summary(args):
     print("-" * 30)
     print(f"{'TOTAL':<15}{total:>8.2f}\n")
 
+
+def build_parser():
+    parser = argparse.ArgumentParser(description="A simple CLI expense tracker.")
+    subparsers = parser.add_subparsers(dest="command", required=True)
+
+    add_parser = subparsers.add_parser("add", help="Add a new expense")
+    add_parser.add_argument("amount", type=float, help="Amount spent")
+    add_parser.add_argument("category", help="Category, e.g. Food, Travel")
+    add_parser.add_argument("note", nargs="?", default="", help="Optional note")
+    add_parser.set_defaults(func=add_expense)
+
+    list_parser = subparsers.add_parser("list", help="List all expenses")
+    list_parser.set_defaults(func=list_expenses)
+
+    summary_parser = subparsers.add_parser("summary", help="Show spending summary")
+    summary_parser.add_argument(
+        "--month", help="Filter by month, format YYYY-MM (e.g. 2026-06)"
+    )
+    summary_parser.set_defaults(func=summary)
+
+    return parser
+
