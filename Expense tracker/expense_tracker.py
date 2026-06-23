@@ -48,3 +48,28 @@ def list_expenses(args):
     print(f"{'TOTAL':<12}{total:.2f}\n")
 
 
+def summary(args):
+    rows = load_expenses()
+    if args.month:
+        rows = [r for r in rows if r["date"].startswith(args.month)]
+
+    if not rows:
+        print("No matching expenses found.")
+        return
+
+    by_category = defaultdict(float)
+    total = 0.0
+    for r in rows:
+        amount = float(r["amount"])
+        by_category[r["category"]] += amount
+        total += amount
+
+    label = f" for {args.month}" if args.month else ""
+    print(f"\nExpense summary{label}:")
+    print("-" * 30)
+    for category, amount in sorted(by_category.items(), key=lambda x: -x[1]):
+        pct = (amount / total) * 100
+        print(f"{category:<15}{amount:>8.2f}  ({pct:.1f}%)")
+    print("-" * 30)
+    print(f"{'TOTAL':<15}{total:>8.2f}\n")
+
