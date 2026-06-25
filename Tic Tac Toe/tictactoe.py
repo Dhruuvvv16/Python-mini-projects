@@ -64,5 +64,18 @@ def best_move(board, ai_player, human_player):
                 move = i
     return move
 
+
+def get_human_move(board):
+    while True:
+        raw = input("Your move (1-9): ").strip()
+        if not raw.isdigit() or not (1 <= int(raw) <= 9):
+            print("Enter a number from 1 to 9.")
+            continue
+        pos = int(raw) - 1
+        if board[pos] != EMPTY:
+            print("That square is taken, pick another.")
+            continue
+        return pos
+
 if __name__ == "__main__":
     main()
