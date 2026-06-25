@@ -53,5 +53,24 @@ def build_parser():
     parser.add_argument("--no-symbols", action="store_true", help="Exclude symbols")
     return parser
 
+
+def main():
+    parser = build_parser()
+    args = parser.parse_args()
+
+    if args.length < 4:
+        print("Length should be at least 4 for a meaningful password.")
+        return
+
+    charset = build_charset(
+        use_upper=not args.no_upper,
+        use_lower=not args.no_lower,
+        use_digits=not args.no_digits,
+        use_symbols=not args.no_symbols,
+    )
+
+    if not charset:
+        print("You excluded every character set. Enable at least one.")
+        return
 if __name__ == "__main__":
     main()
