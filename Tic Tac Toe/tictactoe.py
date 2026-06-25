@@ -50,5 +50,19 @@ def minimax(board, current_player, ai_player, human_player):
         return max(scores)
     return min(scores)
 
+
+def best_move(board, ai_player, human_player):
+    best_score = -math.inf
+    move = None
+    for i in range(9):
+        if board[i] == EMPTY:
+            board[i] = ai_player
+            score = minimax(board, human_player, ai_player, human_player)
+            board[i] = EMPTY
+            if score > best_score:
+                best_score = score
+                move = i
+    return move
+
 if __name__ == "__main__":
     main()
