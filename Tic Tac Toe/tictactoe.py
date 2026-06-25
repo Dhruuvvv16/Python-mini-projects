@@ -117,6 +117,9 @@ def main():
         if is_full(board):
             print("It's a tie!")
             break
+
         turn = "O" if turn == "X" else "X"
+
+
 if __name__ == "__main__":
     main()
