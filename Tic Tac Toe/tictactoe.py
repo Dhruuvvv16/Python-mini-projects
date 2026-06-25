@@ -77,5 +77,14 @@ def get_human_move(board):
             continue
         return pos
 
+
+def choose_symbol():
+    while True:
+        raw = input("Choose your symbol, X or O (X goes first): ").strip().upper()
+        if raw in ("X", "O"):
+            return raw
+        print("Please type X or O.")
+
+
 if __name__ == "__main__":
     main()
