@@ -16,5 +16,21 @@ def choose_difficulty():
         if choice in DIFFICULTIES:
             return DIFFICULTIES[choice]
         print("Invalid choice, please try again.")
+
+
+def get_guess(low, high):
+    while True:
+        raw = input(f"Your guess ({low}-{high}): ").strip()
+        if raw.lower() in ("q", "quit", "exit"):
+            return None
+        if not raw.lstrip("-").isdigit():
+            print("Please enter a whole number.")
+            continue
+        guess = int(raw)
+        if guess < low or guess > high:
+            print(f"Stay within {low}-{high}.")
+            continue
+        return guess
+
 if __name__ == "__main__":
     main()
