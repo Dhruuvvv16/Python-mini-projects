@@ -24,5 +24,23 @@ def generate_password(length, charset):
     return "".join(secrets.choice(charset) for _ in range(length))
 
 
+def rate_strength(password):
+    score = 0
+    if len(password) >= 12:
+        score += 1
+    if len(password) >= 16:
+        score += 1
+    if any(c.islower() for c in password):
+        score += 1
+    if any(c.isupper() for c in password):
+        score += 1
+    if any(c.isdigit() for c in password):
+        score += 1
+    if any(c in SYMBOLS for c in password):
+        score += 1
+
+    labels = ["Very Weak", "Weak", "Fair", "Good", "Strong", "Very Strong", "Excellent"]
+    return labels[min(score, len(labels) - 1)]
+
 if __name__ == "__main__":
     main()
