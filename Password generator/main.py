@@ -17,5 +17,12 @@ def build_charset(use_upper, use_lower, use_digits, use_symbols):
         charset += SYMBOLS
     return charset
 
+
+def generate_password(length, charset):
+    if not charset:
+        raise ValueError("No character set selected.")
+    return "".join(secrets.choice(charset) for _ in range(length))
+
+
 if __name__ == "__main__":
     main()
