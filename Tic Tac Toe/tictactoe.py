@@ -86,5 +86,37 @@ def choose_symbol():
         print("Please type X or O.")
 
 
+def main():
+    print("=" * 40)
+    print("   TIC-TAC-TOE  (vs unbeatable AI)")
+    print("=" * 40)
+    print("Squares are numbered 1-9, left to right, top to bottom.\n")
+
+    human = choose_symbol()
+    ai = "O" if human == "X" else "X"
+    board = [EMPTY] * 9
+    turn = "X"  # X always starts
+
+    print_board([str(i + 1) if c == EMPTY else c for i, c in enumerate(board)])
+
+    while True:
+        if turn == human:
+            pos = get_human_move(board)
+            board[pos] = human
+        else:
+            print("Computer is thinking...")
+            pos = best_move(board, ai, human)
+            board[pos] = ai
+
+        print_board([str(i + 1) if c == EMPTY else c for i, c in enumerate(board)])
+
+        win = winner(board)
+        if win:
+            print("You win!" if win == human else "Computer wins!")
+            break
+        if is_full(board):
+            print("It's a tie!")
+            break
+        turn = "O" if turn == "X" else "X"
 if __name__ == "__main__":
     main()
