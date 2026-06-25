@@ -29,5 +29,14 @@ def is_full(board):
     return EMPTY not in board
 
 
+def minimax(board, current_player, ai_player, human_player):
+    win = winner(board)
+    if win == ai_player:
+        return 1
+    if win == human_player:
+        return -1
+    if is_full(board):
+        return 0
+
 if __name__ == "__main__":
     main()
