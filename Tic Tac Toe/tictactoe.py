@@ -38,5 +38,17 @@ def minimax(board, current_player, ai_player, human_player):
     if is_full(board):
         return 0
 
+    scores = []
+    for i in range(9):
+        if board[i] == EMPTY:
+            board[i] = current_player
+            next_player = human_player if current_player == ai_player else ai_player
+            scores.append(minimax(board, next_player, ai_player, human_player))
+            board[i] = EMPTY
+
+    if current_player == ai_player:
+        return max(scores)
+    return min(scores)
+
 if __name__ == "__main__":
     main()
