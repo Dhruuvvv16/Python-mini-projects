@@ -42,5 +42,16 @@ def rate_strength(password):
     labels = ["Very Weak", "Weak", "Fair", "Good", "Strong", "Very Strong", "Excellent"]
     return labels[min(score, len(labels) - 1)]
 
+
+def build_parser():
+    parser = argparse.ArgumentParser(description="Generate secure random passwords.")
+    parser.add_argument("-l", "--length", type=int, default=12, help="Password length (default: 12)")
+    parser.add_argument("-n", "--count", type=int, default=1, help="How many passwords to generate (default: 1)")
+    parser.add_argument("--no-upper", action="store_true", help="Exclude uppercase letters")
+    parser.add_argument("--no-lower", action="store_true", help="Exclude lowercase letters")
+    parser.add_argument("--no-digits", action="store_true", help="Exclude digits")
+    parser.add_argument("--no-symbols", action="store_true", help="Exclude symbols")
+    return parser
+
 if __name__ == "__main__":
     main()
