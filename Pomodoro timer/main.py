@@ -17,5 +17,14 @@ def countdown(minutes, label):
         sys.exit(0)
     sys.stdout.write("\r  00:00 remaining   \n")
     print(f"{label} complete!\a")
+
+
+def build_parser():
+    parser = argparse.ArgumentParser(description="A simple Pomodoro timer.")
+    parser.add_argument("--work", type=float, default=25, help="Work session length in minutes (default: 25)")
+    parser.add_argument("--short-break", type=float, default=5, help="Short break length in minutes (default: 5)")
+    parser.add_argument("--long-break", type=float, default=15, help="Long break length in minutes (default: 15)")
+    parser.add_argument("--cycles", type=int, default=4, help="Work sessions before a long break (default: 4)")
+    return parser
 if __name__ == "__main__":
     main()
