@@ -25,5 +25,9 @@ def winner(board):
     return None
 
 
+def is_full(board):
+    return EMPTY not in board
+
+
 if __name__ == "__main__":
     main()
