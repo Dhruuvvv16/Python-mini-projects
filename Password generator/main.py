@@ -72,5 +72,13 @@ def main():
     if not charset:
         print("You excluded every character set. Enable at least one.")
         return
+
+    print(f"\nGenerating {args.count} password(s) of length {args.length}:\n")
+    for _ in range(args.count):
+        password = generate_password(args.length, charset)
+        print(f"  {password}   [{rate_strength(password)}]")
+    print()
+
+
 if __name__ == "__main__":
     main()
