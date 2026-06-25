@@ -61,5 +61,27 @@ def play_round(difficulty):
     print(f"\nOut of attempts! The number was {target}.")
     return False
 
+
+def main():
+    print("=" * 40)
+    print("   NUMBER GUESSING GAME")
+    print("=" * 40)
+
+    wins = 0
+    rounds = 0
+
+    while True:
+        difficulty = choose_difficulty()
+        won = play_round(difficulty)
+        rounds += 1
+        wins += int(won)
+
+        print(f"\nScore so far: {wins}/{rounds} rounds won.")
+        again = input("Play again? (y/n): ").strip().lower()
+        if again != "y":
+            print("Thanks for playing!")
+            break
+
+
 if __name__ == "__main__":
     main()
