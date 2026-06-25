@@ -32,5 +32,34 @@ def get_guess(low, high):
             continue
         return guess
 
+
+def play_round(difficulty):
+    low, high = difficulty["range"]
+    attempts_left = difficulty["attempts"]
+    target = random.randint(low, high)
+
+    print(f"\nI'm thinking of a number between {low} and {high}.")
+    print(f"You have {attempts_left} attempts. Type 'q' to quit early.\n")
+
+    while attempts_left > 0:
+        guess = get_guess(low, high)
+        if guess is None:
+            print(f"You quit. The number was {target}.")
+            return False
+
+        attempts_left -= 1
+
+        if guess == target:
+            print(f"\nCorrect! The number was {target}.")
+            print(f"You got it with {attempts_left} attempt(s) left to spare.")
+            return True
+        elif guess < target:
+            print(f"Too low. {attempts_left} attempt(s) left.")
+        else:
+            print(f"Too high. {attempts_left} attempt(s) left.")
+
+    print(f"\nOut of attempts! The number was {target}.")
+    return False
+
 if __name__ == "__main__":
     main()
