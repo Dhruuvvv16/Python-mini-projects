@@ -12,5 +12,9 @@ def shift_char(char, shift):
         return ALPHABET[index].upper()
     return char
 
+
+def encode(text, shift):
+    return "".join(shift_char(c, shift) for c in text)
+
 if __name__ == "__main__":
     main()
