@@ -80,3 +80,20 @@ STORY = {
     },
 }
 
+
+def play_scene(scene_key):
+    scene = STORY[scene_key]
+    print("\n" + scene["text"] + "\n")
+
+    if not scene["choices"]:
+        print("--- THE END ---")
+        return None
+
+    for key, (label, _) in scene["choices"].items():
+        print(f"  {key}. {label}")
+
+    while True:
+        choice = input("\nWhat do you do? ").strip()
+        if choice in scene["choices"]:
+            return scene["choices"][choice][1]
+        print("Invalid choice, try again.")
