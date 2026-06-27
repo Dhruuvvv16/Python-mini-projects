@@ -55,5 +55,19 @@ def list_decks(args):
     print()
 
 
+def weighted_card_order(cards):
+    """Cards in lower boxes are weighted to appear more often."""
+    pool = list(range(len(cards)))
+    pool_weights = [MAX_BOX + 1 - cards[i]["box"] for i in pool]
+    order = []
+    while pool:
+        chosen = random.choices(pool, weights=pool_weights, k=1)[0]
+        idx = pool.index(chosen)
+        order.append(chosen)
+        pool.pop(idx)
+        pool_weights.pop(idx)
+    return order
+
+
 if __name__ == "__main__":
     main()
