@@ -128,5 +128,32 @@ def stats(args):
     mastered = box_counts[MAX_BOX]
     print(f"\n{mastered}/{len(cards)} cards fully mastered (box {MAX_BOX}).\n")
 
+
+def build_parser():
+    parser = argparse.ArgumentParser(description="A simple CLI flashcard app with spaced repetition.")
+    subparsers = parser.add_subparsers(dest="command", required=True)
+
+    create_parser = subparsers.add_parser("create-deck", help="Create a new deck")
+    create_parser.add_argument("deck", help="Name of the deck")
+    create_parser.set_defaults(func=create_deck)
+
+    add_parser = subparsers.add_parser("add-card", help="Add a card to a deck")
+    add_parser.add_argument("deck", help="Name of the deck")
+    add_parser.add_argument("front", help="Front of the card (question/prompt)")
+    add_parser.add_argument("back", help="Back of the card (answer)")
+    add_parser.set_defaults(func=add_card)
+
+    list_parser = subparsers.add_parser("list-decks", help="List all decks")
+    list_parser.set_defaults(func=list_decks)
+
+    study_parser = subparsers.add_parser("study", help="Study a deck")
+    study_parser.add_argument("deck", help="Name of the deck to study")
+    study_parser.set_defaults(func=study)
+
+    stats_parser = subparsers.add_parser("stats", help="Show progress stats for a deck")
+    stats_parser.add_argument("deck", help="Name of the deck")
+    stats_parser.set_defaults(func=stats)
+
+    return parser
 if __name__ == "__main__":
     main()
