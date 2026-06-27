@@ -69,5 +69,18 @@ def weighted_card_order(cards):
     return order
 
 
+def study(args):
+    data = load_data()
+    if args.deck not in data or not data[args.deck]:
+        print(f"Deck '{args.deck}' doesn't exist or has no cards.")
+        return
+
+    cards = data[args.deck]
+    order = weighted_card_order(cards)
+    correct = 0
+    total = len(order)
+
+    print(f"\nStudying '{args.deck}' ({total} cards). Press Enter to reveal an answer.\n")
+
 if __name__ == "__main__":
     main()
