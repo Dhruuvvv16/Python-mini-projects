@@ -17,5 +17,9 @@ def load_data():
             return {}
 
 
+def save_data(data):
+    with open(DATA_FILE, "w", encoding="utf-8") as f:
+        json.dump(data, f, indent=2)
+
 if __name__ == "__main__":
     main()
