@@ -97,3 +97,20 @@ def play_scene(scene_key):
         if choice in scene["choices"]:
             return scene["choices"][choice][1]
         print("Invalid choice, try again.")
+
+
+def main():
+    print("=" * 40)
+    print("   THE FOREST CLEARING")
+    print("   A Text Adventure")
+    print("=" * 40)
+
+    scene_key = "start"
+    while scene_key is not None:
+        scene_key = play_scene(scene_key)
+
+    print("\nThanks for playing! Edit the STORY dictionary to write your own paths.")
+
+
+if __name__ == "__main__":
+    main()
