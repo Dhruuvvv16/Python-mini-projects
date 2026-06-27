@@ -21,5 +21,15 @@ def save_data(data):
     with open(DATA_FILE, "w", encoding="utf-8") as f:
         json.dump(data, f, indent=2)
 
+
+def create_deck(args):
+    data = load_data()
+    if args.deck in data:
+        print(f"Deck '{args.deck}' already exists.")
+        return
+    data[args.deck] = []
+    save_data(data)
+    print(f"Created deck '{args.deck}'.")
+
 if __name__ == "__main__":
     main()
