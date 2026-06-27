@@ -41,5 +41,19 @@ def add_card(args):
     data[args.deck].append(card)
     save_data(data)
     print(f"Added card to '{args.deck}': {args.front} -> {args.back}")
+
+
+def list_decks(args):
+    data = load_data()
+    if not data:
+        print("No decks yet. Create one with create-deck.")
+        return
+    print(f"\n{'Deck':<25}{'Cards'}")
+    print("-" * 35)
+    for deck, cards in data.items():
+        print(f"{deck:<25}{len(cards)}")
+    print()
+
+
 if __name__ == "__main__":
     main()
