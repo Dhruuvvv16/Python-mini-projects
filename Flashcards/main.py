@@ -155,5 +155,13 @@ def build_parser():
     stats_parser.set_defaults(func=stats)
 
     return parser
+
+
+def main():
+    parser = build_parser()
+    args = parser.parse_args()
+    args.func(args)
+
+
 if __name__ == "__main__":
     main()
