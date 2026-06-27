@@ -34,5 +34,36 @@ def get_shift():
             return int(raw)
         print("Please enter a whole number between 1 and 25.")
 
+
+def main():
+    print("=" * 40)
+    print("   CAESAR CIPHER TOOL")
+    print("=" * 40)
+
+    while True:
+        print("\n1. Encode a message")
+        print("2. Decode a message")
+        print("3. Crack a message (try all shifts)")
+        print("4. Quit")
+        choice = input("Choose an option (1-4): ").strip()
+
+        if choice == "1":
+            text = input("Message to encode: ")
+            shift = get_shift()
+            print(f"\nEncoded: {encode(text, shift)}")
+        elif choice == "2":
+            text = input("Message to decode: ")
+            shift = get_shift()
+            print(f"\nDecoded: {decode(text, shift)}")
+        elif choice == "3":
+            text = input("Message to crack: ")
+            crack(text)
+        elif choice == "4":
+            print("Goodbye!")
+            break
+        else:
+            print("Invalid option, try again.")
+
+
 if __name__ == "__main__":
     main()
