@@ -11,5 +11,12 @@ CATEGORIES = {
     "Code": {".py", ".js", ".html", ".css", ".java", ".cpp", ".c", ".json"},
 }
 
+
+def categorize(extension):
+    for category, extensions in CATEGORIES.items():
+        if extension.lower() in extensions:
+            return category
+    return "Others"
+
 if __name__ == "__main__":
     main()
