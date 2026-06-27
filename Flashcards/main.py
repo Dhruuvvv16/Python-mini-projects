@@ -31,5 +31,15 @@ def create_deck(args):
     save_data(data)
     print(f"Created deck '{args.deck}'.")
 
+
+def add_card(args):
+    data = load_data()
+    if args.deck not in data:
+        print(f"No deck named '{args.deck}'. Create it first with create-deck.")
+        return
+    card = {"front": args.front, "back": args.back, "box": 1}
+    data[args.deck].append(card)
+    save_data(data)
+    print(f"Added card to '{args.deck}': {args.front} -> {args.back}")
 if __name__ == "__main__":
     main()
