@@ -48,5 +48,14 @@ def organize(folder, dry_run):
         action = "would be moved" if dry_run else "moved"
         print(f"\n{moved} file(s) {action}.")
 
+
+def build_parser():
+    parser = argparse.ArgumentParser(description="Organize a folder's files by type.")
+    parser.add_argument("folder", help="Path to the folder to organize")
+    parser.add_argument(
+        "--dry-run", action="store_true", help="Preview changes without moving files"
+    )
+    return parser
+
 if __name__ == "__main__":
     main()
