@@ -82,5 +82,28 @@ def study(args):
 
     print(f"\nStudying '{args.deck}' ({total} cards). Press Enter to reveal an answer.\n")
 
+    for position, idx in enumerate(order, start=1):
+        card = cards[idx]
+        print(f"[{position}/{total}] Box {card['box']}: {card['front']}")
+        input("   (press Enter to reveal) ")
+        print(f"   Answer: {card['back']}")
+
+        while True:
+            result = input("   Did you get it right? (y/n): ").strip().lower()
+            if result in ("y", "n"):
+                break
+            print("   Please enter 'y' or 'n'.")
+
+        if result == "y":
+            card["box"] = min(card["box"] + 1, MAX_BOX)
+            correct += 1
+        else:
+            card["box"] = 1
+
+    save_data(data)
+    print(f"\nSession complete: {correct}/{total} correct.")
+    print("Card boxes updated and saved.\n")
+
+
 if __name__ == "__main__":
     main()
