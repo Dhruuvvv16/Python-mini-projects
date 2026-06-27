@@ -16,5 +16,9 @@ def shift_char(char, shift):
 def encode(text, shift):
     return "".join(shift_char(c, shift) for c in text)
 
+
+def decode(text, shift):
+    return encode(text, -shift)
+
 if __name__ == "__main__":
     main()
