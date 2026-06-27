@@ -105,5 +105,28 @@ def study(args):
     print("Card boxes updated and saved.\n")
 
 
+def stats(args):
+    data = load_data()
+    if args.deck not in data:
+        print(f"No deck named '{args.deck}'.")
+        return
+
+    cards = data[args.deck]
+    if not cards:
+        print("This deck has no cards yet.")
+        return
+
+    print(f"\nStats for '{args.deck}':")
+    box_counts = {i: 0 for i in range(1, MAX_BOX + 1)}
+    for card in cards:
+        box_counts[card["box"]] += 1
+
+    for box, count in box_counts.items():
+        bar = "#" * count
+        print(f"  Box {box}: {count:<3} {bar}")
+
+    mastered = box_counts[MAX_BOX]
+    print(f"\n{mastered}/{len(cards)} cards fully mastered (box {MAX_BOX}).\n")
+
 if __name__ == "__main__":
     main()
