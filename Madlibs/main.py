@@ -71,5 +71,28 @@ def collect_words(blanks):
         answers[blank] = input(f"  Give me {label_for(blank)}: ").strip() or "???"
     return answers
 
+
+def main():
+    print("=" * 40)
+    print("   MAD LIBS GENERATOR")
+    print("=" * 40)
+
+    while True:
+        story = choose_story()
+        answers = collect_words(story["blanks"])
+        result = story["template"].format(**answers)
+
+        print("\n" + "=" * 40)
+        print(f"  {story['title']}")
+        print("=" * 40)
+        print(result)
+        print("=" * 40)
+
+        again = input("\nPlay again? (y/n): ").strip().lower()
+        if again != "y":
+            print("Thanks for playing!")
+            break
+
+
 if __name__ == "__main__":
     main()
