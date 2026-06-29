@@ -31,5 +31,24 @@ def build_parser():
                          help="The base to convert to, or 'all' (default: all)")
     return parser
 
+
+def main():
+    parser = build_parser()
+    args = parser.parse_args()
+
+    try:
+        if args.to_base == "all":
+            decimal_value = to_decimal(args.value, args.from_base)
+            print(f"\nInput: {args.value} ({args.from_base})\n")
+            for base in BASES:
+                print(f"  {base:<5}: {from_decimal(decimal_value, base)}")
+            print()
+        else:
+            result = convert(args.value, args.from_base, args.to_base)
+            print(f"\n{args.value} ({args.from_base}) = {result} ({args.to_base})\n")
+    except ValueError:
+        print(f"'{args.value}' isn't a valid {args.from_base} number.")
+
+
 if __name__ == "__main__":
     main()
