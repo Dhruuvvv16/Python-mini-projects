@@ -51,5 +51,17 @@ def label_for(blank):
     return base.replace("_", " ")
 
 
+def choose_story():
+    print("\nPick a story:")
+    for i, story in enumerate(STORIES, start=1):
+        print(f"  {i}. {story['title']}")
+    while True:
+        raw = input(f"Enter a number (1-{len(STORIES)}), or 'r' for random: ").strip().lower()
+        if raw == "r":
+            return random.choice(STORIES)
+        if raw.isdigit() and 1 <= int(raw) <= len(STORIES):
+            return STORIES[int(raw) - 1]
+        print("Invalid choice, try again.")
+
 if __name__ == "__main__":
     main()
