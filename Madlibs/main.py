@@ -36,5 +36,12 @@ STORIES = [
     },
 ]
 
+LABELS = {
+    "verb_ing": "a verb ending in -ing",
+    "verb_past": "a verb in past tense",
+    "number": "a number",
+    "name": "a person's name",
+}
+
 if __name__ == "__main__":
     main()
