@@ -43,5 +43,13 @@ LABELS = {
     "name": "a person's name",
 }
 
+
+def label_for(blank):
+    if blank in LABELS:
+        return LABELS[blank]
+    base = blank.rstrip("0123456789")
+    return base.replace("_", " ")
+
+
 if __name__ == "__main__":
     main()
