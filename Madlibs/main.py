@@ -63,5 +63,13 @@ def choose_story():
             return STORIES[int(raw) - 1]
         print("Invalid choice, try again.")
 
+
+def collect_words(blanks):
+    answers = {}
+    print("\nFill in the blanks:\n")
+    for blank in blanks:
+        answers[blank] = input(f"  Give me {label_for(blank)}: ").strip() or "???"
+    return answers
+
 if __name__ == "__main__":
     main()
