@@ -33,5 +33,18 @@ def add_contact(args):
     save_contacts(contacts)
     print(f"Added contact: {args.name}")
 
+
+def list_contacts(args):
+    contacts = load_contacts()
+    if not contacts:
+        print("No contacts yet.")
+        return
+    contacts.sort(key=lambda c: c["name"].lower())
+    print(f"\n{'Name':<25}{'Phone':<15}{'Email'}")
+    print("-" * 60)
+    for c in contacts:
+        print(f"{c['name']:<25}{c['phone']:<15}{c['email']}")
+    print()
+
 if __name__ == "__main__":
     main()
