@@ -46,5 +46,24 @@ def list_contacts(args):
         print(f"{c['name']:<25}{c['phone']:<15}{c['email']}")
     print()
 
+
+def search_contacts(args):
+    contacts = load_contacts()
+    query = args.query.lower()
+    matches = [
+        c for c in contacts
+        if query in c["name"].lower()
+        or query in c.get("phone", "")
+        or query in c.get("email", "").lower()
+    ]
+    if not matches:
+        print(f"No contacts matching '{args.query}'.")
+        return
+    print(f"\n{'Name':<25}{'Phone':<15}{'Email'}")
+    print("-" * 60)
+    for c in matches:
+        print(f"{c['name']:<25}{c['phone']:<15}{c['email']}")
+    print()
+
 if __name__ == "__main__":
     main()
