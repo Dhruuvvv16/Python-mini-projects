@@ -89,5 +89,34 @@ def delete_contact(args):
     save_contacts(new_contacts)
     print(f"Deleted contact: {args.name}")
 
+
+def build_parser():
+    parser = argparse.ArgumentParser(description="A simple CLI contact book.")
+    subparsers = parser.add_subparsers(dest="command", required=True)
+
+    add_parser = subparsers.add_parser("add", help="Add a new contact")
+    add_parser.add_argument("name")
+    add_parser.add_argument("--phone")
+    add_parser.add_argument("--email")
+    add_parser.set_defaults(func=add_contact)
+
+    list_parser = subparsers.add_parser("list", help="List all contacts")
+    list_parser.set_defaults(func=list_contacts)
+
+    search_parser = subparsers.add_parser("search", help="Search contacts")
+    search_parser.add_argument("query")
+    search_parser.set_defaults(func=search_contacts)
+
+    update_parser = subparsers.add_parser("update", help="Update a contact")
+    update_parser.add_argument("name")
+    update_parser.add_argument("--phone")
+    update_parser.add_argument("--email")
+    update_parser.set_defaults(func=update_contact)
+
+    delete_parser = subparsers.add_parser("delete", help="Delete a contact")
+    delete_parser.add_argument("name")
+    delete_parser.set_defaults(func=delete_contact)
+
+    return parser
 if __name__ == "__main__":
     main()
