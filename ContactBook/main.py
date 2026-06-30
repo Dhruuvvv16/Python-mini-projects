@@ -80,5 +80,14 @@ def update_contact(args):
     print(f"No contact named '{args.name}' found.")
 
 
+def delete_contact(args):
+    contacts = load_contacts()
+    new_contacts = [c for c in contacts if c["name"].lower() != args.name.lower()]
+    if len(new_contacts) == len(contacts):
+        print(f"No contact named '{args.name}' found.")
+        return
+    save_contacts(new_contacts)
+    print(f"Deleted contact: {args.name}")
+
 if __name__ == "__main__":
     main()
