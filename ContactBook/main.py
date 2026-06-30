@@ -14,5 +14,10 @@ def load_contacts():
         except json.JSONDecodeError:
             return []
 
+
+def save_contacts(contacts):
+    with open(DATA_FILE, "w", encoding="utf-8") as f:
+        json.dump(contacts, f, indent=2)
+
 if __name__ == "__main__":
     main()
