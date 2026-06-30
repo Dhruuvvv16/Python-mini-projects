@@ -65,5 +65,20 @@ def search_contacts(args):
         print(f"{c['name']:<25}{c['phone']:<15}{c['email']}")
     print()
 
+
+def update_contact(args):
+    contacts = load_contacts()
+    for c in contacts:
+        if c["name"].lower() == args.name.lower():
+            if args.phone:
+                c["phone"] = args.phone
+            if args.email:
+                c["email"] = args.email
+            save_contacts(contacts)
+            print(f"Updated contact: {args.name}")
+            return
+    print(f"No contact named '{args.name}' found.")
+
+
 if __name__ == "__main__":
     main()
