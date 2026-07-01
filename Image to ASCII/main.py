@@ -27,5 +27,12 @@ def convert_image(path, width):
     return "\n".join(rows)
 
 
+def build_parser():
+    parser = argparse.ArgumentParser(description="Convert an image to ASCII art.")
+    parser.add_argument("image", help="Path to the input image")
+    parser.add_argument("--width", type=int, default=100, help="Output width in characters (default: 100)")
+    parser.add_argument("--output", help="Optional file path to save the ASCII art as .txt")
+    return parser
+
 if __name__ == "__main__":
     main()
