@@ -34,5 +34,27 @@ def build_parser():
     parser.add_argument("--output", help="Optional file path to save the ASCII art as .txt")
     return parser
 
+
+def main():
+    parser = build_parser()
+    args = parser.parse_args()
+
+    try:
+        art = convert_image(args.image, args.width)
+    except FileNotFoundError:
+        print(f"Could not find image: {args.image}")
+        return
+    except Exception as e:
+        print(f"Something went wrong: {e}")
+        return
+
+    print(art)
+
+    if args.output:
+        with open(args.output, "w", encoding="utf-8") as f:
+            f.write(art)
+        print(f"\nSaved ASCII art to {args.output}")
+
+
 if __name__ == "__main__":
     main()
