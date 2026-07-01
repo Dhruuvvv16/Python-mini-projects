@@ -9,5 +9,12 @@ def resize_image(image, new_width):
     # 0.55 roughly compensates for terminal characters being taller than wide
     new_height = max(int(new_width * aspect_ratio * 0.55), 1)
     return image.resize((new_width, new_height))
+
+
+def pixels_to_ascii(image):
+    pixels = image.getdata()
+    return "".join(ASCII_CHARS[pixel * (len(ASCII_CHARS) - 1) // 255] for pixel in pixels)
+
+
 if __name__ == "__main__":
     main()
