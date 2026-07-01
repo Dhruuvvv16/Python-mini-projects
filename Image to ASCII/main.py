@@ -3,6 +3,8 @@ import argparse
 from PIL import Image
 
 ASCII_CHARS = "@%#*+=-:. "
+
+
 def resize_image(image, new_width):
     width, height = image.size
     aspect_ratio = height / width
