@@ -16,3 +16,16 @@ pip install Pillow
 python main.py <image_path> [options]
 ```
 
+### Examples
+
+Convert an image and display the ASCII art in the terminal:
+
+```bash
+python main.py photo.jpg
+```
+
+Convert an image with a custom width and save the output to a text file:
+
+```bash
+python main.py photo.jpg --width 120 --output art.txt
+```
