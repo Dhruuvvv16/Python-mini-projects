@@ -27,3 +27,12 @@ def move_snake(snake, direction):
     new_head = (head_x + dx, head_y + dy)
     return [new_head] + snake[:-1]
 
+
+def grow_snake(snake, direction):
+    """Move the snake forward and keep the tail (snake gets longer)."""
+    head_x, head_y = snake[0]
+    dx, dy = direction
+    new_head = (head_x + dx, head_y + dy)
+    return [new_head] + snake
+
+
