@@ -18,3 +18,12 @@ WHITE = (240, 240, 240)
 
 UP, DOWN, LEFT, RIGHT = (0, -1), (0, 1), (-1, 0), (1, 0)
 OPPOSITE = {UP: DOWN, DOWN: UP, LEFT: RIGHT, RIGHT: LEFT}
+
+
+def move_snake(snake, direction):
+    """Move the snake forward by one cell (same length)."""
+    head_x, head_y = snake[0]
+    dx, dy = direction
+    new_head = (head_x + dx, head_y + dy)
+    return [new_head] + snake[:-1]
+
