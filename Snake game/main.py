@@ -36,3 +36,7 @@ def grow_snake(snake, direction):
     return [new_head] + snake
 
 
+def check_wall_collision(head, width, height):
+    x, y = head
+    return x < 0 or x >= width or y < 0 or y >= height
+
