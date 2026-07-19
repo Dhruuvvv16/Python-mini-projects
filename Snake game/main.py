@@ -40,3 +40,7 @@ def check_wall_collision(head, width, height):
     x, y = head
     return x < 0 or x >= width or y < 0 or y >= height
 
+
+def check_self_collision(snake):
+    return snake[0] in snake[1:]
+
