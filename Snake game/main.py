@@ -51,3 +51,10 @@ def spawn_food(snake, width, height):
         if pos not in snake:
             return pos
 
+
+def draw_cell(surface, position, color):
+    x, y = position
+    rect = pygame.Rect(x * CELL_SIZE, y * CELL_SIZE, CELL_SIZE, CELL_SIZE)
+    pygame.draw.rect(surface, color, rect)
+    pygame.draw.rect(surface, BLACK, rect, 1)
+
