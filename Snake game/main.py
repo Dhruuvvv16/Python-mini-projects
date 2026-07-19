@@ -44,3 +44,10 @@ def check_wall_collision(head, width, height):
 def check_self_collision(snake):
     return snake[0] in snake[1:]
 
+
+def spawn_food(snake, width, height):
+    while True:
+        pos = (random.randint(0, width - 1), random.randint(0, height - 1))
+        if pos not in snake:
+            return pos
+
