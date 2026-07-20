@@ -39,5 +39,26 @@ def build_parser():
     parser.add_argument("--count", type=int, default=10, help="Number of stories to fetch (default: 10)")
     return parser
 
+
+def main():
+    parser = build_parser()
+    args = parser.parse_args()
+
+    print("=" * 50)
+    print("   HACKER NEWS TOP STORIES")
+    print("=" * 50)
+
+    try:
+        headlines = fetch_headlines(args.count)
+    except requests.exceptions.RequestException:
+        print("Couldn't reach Hacker News. Check your internet connection.")
+        sys.exit(1)
+
+    for i, story in enumerate(headlines, start=1):
+        print(f"\n{i}. {story['title']}")
+        print(f"   {story['score']} points | {story['comments']} comments")
+        print(f"   {story['url']}")
+    print()
+
 if __name__ == "__main__":
     main()
