@@ -33,5 +33,11 @@ def fetch_headlines(count):
             })
     return headlines
 
+
+def build_parser():
+    parser = argparse.ArgumentParser(description="Fetch current Hacker News top stories.")
+    parser.add_argument("--count", type=int, default=10, help="Number of stories to fetch (default: 10)")
+    return parser
+
 if __name__ == "__main__":
     main()
