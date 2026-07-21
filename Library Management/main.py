@@ -86,5 +86,24 @@ def checkout_book(args):
     conn.close()
     print(f"Checked out '{args.title}'. {available - 1} copies left.")
 
+
+def return_book(args):
+    conn = get_connection()
+    row = conn.execute(
+        "SELECT id, available_copies, total_copies FROM books WHERE title = ?", (args.title,)
+    ).fetchone()
+    if not row:
+        print(f"No book titled '{args.title}' found.")
+        conn.close()
+        return
+    book_id, available, total = row
+    if available >= total:
+        print(f"All copies of '{args.title}' are already checked in.")
+        conn.close()
+        return
+    conn.execute("UPDATE books SET available_copies = available_copies + 1 WHERE id = ?", (book_id,))
+    conn.commit()
+    conn.close()
+    print(f"Returned '{args.title}'. {available + 1} copies now available.")
 if __name__ == "__main__":
     main()
