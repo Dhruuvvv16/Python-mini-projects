@@ -47,5 +47,25 @@ def list_books(args):
         print(f"{title:<30}{author:<20}{available}/{total}")
     print()
 
+
+def search_books(args):
+    conn = get_connection()
+    query = f"%{args.query}%"
+    rows = conn.execute(
+        "SELECT title, author, available_copies, total_copies FROM books "
+        "WHERE title LIKE ? OR author LIKE ? ORDER BY title",
+        (query, query),
+    ).fetchall()
+    conn.close()
+
+    if not rows:
+        print(f"No books matching '{args.query}'.")
+        return
+
+    print(f"\n{'Title':<30}{'Author':<20}{'Available'}")
+    print("-" * 65)
+    for title, author, available, total in rows:
+        print(f"{title:<30}{author:<20}{available}/{total}")
+    print()
 if __name__ == "__main__":
     main()
