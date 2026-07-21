@@ -117,5 +117,37 @@ def remove_book(args):
     else:
         print(f"Removed '{args.title}' from the library.")
 
+
+def build_parser():
+    parser = argparse.ArgumentParser(description="A simple CLI library management system.")
+    subparsers = parser.add_subparsers(dest="command", required=True)
+
+    add_parser = subparsers.add_parser("add", help="Add a new book")
+    add_parser.add_argument("title")
+    add_parser.add_argument("author")
+    add_parser.add_argument("--copies", type=int, default=1)
+    add_parser.set_defaults(func=add_book)
+
+    list_parser = subparsers.add_parser("list", help="List all books")
+    list_parser.set_defaults(func=list_books)
+
+    search_parser = subparsers.add_parser("search", help="Search books by title or author")
+    search_parser.add_argument("query")
+    search_parser.set_defaults(func=search_books)
+
+    checkout_parser = subparsers.add_parser("checkout", help="Check out a book")
+    checkout_parser.add_argument("title")
+    checkout_parser.set_defaults(func=checkout_book)
+
+    return_parser = subparsers.add_parser("return", help="Return a book")
+    return_parser.add_argument("title")
+    return_parser.set_defaults(func=return_book)
+
+    remove_parser = subparsers.add_parser("remove", help="Remove a book from the catalog")
+    remove_parser.add_argument("title")
+    remove_parser.set_defaults(func=remove_book)
+
+    return parser
+
 if __name__ == "__main__":
     main()
