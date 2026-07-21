@@ -105,5 +105,17 @@ def return_book(args):
     conn.commit()
     conn.close()
     print(f"Returned '{args.title}'. {available + 1} copies now available.")
+
+
+def remove_book(args):
+    conn = get_connection()
+    cursor = conn.execute("DELETE FROM books WHERE title = ?", (args.title,))
+    conn.commit()
+    conn.close()
+    if cursor.rowcount == 0:
+        print(f"No book titled '{args.title}' found.")
+    else:
+        print(f"Removed '{args.title}' from the library.")
+
 if __name__ == "__main__":
     main()
