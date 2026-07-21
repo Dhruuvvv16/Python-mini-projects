@@ -67,5 +67,24 @@ def search_books(args):
     for title, author, available, total in rows:
         print(f"{title:<30}{author:<20}{available}/{total}")
     print()
+
+
+def checkout_book(args):
+    conn = get_connection()
+    row = conn.execute("SELECT id, available_copies FROM books WHERE title = ?", (args.title,)).fetchone()
+    if not row:
+        print(f"No book titled '{args.title}' found.")
+        conn.close()
+        return
+    book_id, available = row
+    if available <= 0:
+        print(f"No copies of '{args.title}' are available right now.")
+        conn.close()
+        return
+    conn.execute("UPDATE books SET available_copies = available_copies - 1 WHERE id = ?", (book_id,))
+    conn.commit()
+    conn.close()
+    print(f"Checked out '{args.title}'. {available - 1} copies left.")
+
 if __name__ == "__main__":
     main()
