@@ -18,5 +18,34 @@ def get_connection():
     """)
     return conn
 
+
+def add_book(args):
+    conn = get_connection()
+    conn.execute(
+        "INSERT INTO books (title, author, total_copies, available_copies) VALUES (?, ?, ?, ?)",
+        (args.title, args.author, args.copies, args.copies),
+    )
+    conn.commit()
+    conn.close()
+    print(f"Added '{args.title}' by {args.author} ({args.copies} copies).")
+
+
+def list_books(args):
+    conn = get_connection()
+    rows = conn.execute(
+        "SELECT title, author, available_copies, total_copies FROM books ORDER BY title"
+    ).fetchall()
+    conn.close()
+
+    if not rows:
+        print("The library is empty. Add a book with 'add'.")
+        return
+
+    print(f"\n{'Title':<30}{'Author':<20}{'Available'}")
+    print("-" * 65)
+    for title, author, available, total in rows:
+        print(f"{title:<30}{author:<20}{available}/{total}")
+    print()
+
 if __name__ == "__main__":
     main()
