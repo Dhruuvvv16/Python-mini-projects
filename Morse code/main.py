@@ -14,5 +14,9 @@ MORSE_CODE = {
 
 MORSE_TO_TEXT = {code: char for char, code in MORSE_CODE.items()}
 
+
+def text_to_morse(text):
+    symbols = []
+    return " ".join(symbols)
 if __name__ == "__main__":
     main()
