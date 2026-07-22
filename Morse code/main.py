@@ -26,6 +26,15 @@ def text_to_morse(text):
 
 
 def morse_to_text(morse):
+    codes = morse.strip().split(" ")
+    result = []
+    for code in codes:
+        if code == "/":
+            result.append(" ")
+        elif code in MORSE_TO_TEXT:
+            result.append(MORSE_TO_TEXT[code])
+        else:
+            result.append("?")
     return "".join(result)
 if __name__ == "__main__":
     main()
