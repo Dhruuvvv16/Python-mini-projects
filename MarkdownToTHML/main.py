@@ -93,5 +93,12 @@ def convert_markdown(markdown_text):
 
     close_list()
     return "\n".join(html_lines)
+def build_parser():
+    parser = argparse.ArgumentParser(description="Convert a Markdown file to a styled HTML file.")
+    parser.add_argument("input", help="Path to the input .md file")
+    parser.add_argument("-o", "--output", help="Path to the output .html file (default: same name, .html)")
+    parser.add_argument("-t", "--title", help="Title for the HTML page (default: input filename)")
+    return parser
+
 if __name__ == "__main__":
     main()
