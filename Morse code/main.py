@@ -11,5 +11,8 @@ MORSE_CODE = {
     ';': '-.-.-.', '=': '-...-', '+': '.-.-.', '-': '-....-', '_': '..--.-',
     '"': '.-..-.', '$': '...-..-', '@': '.--.-.', ' ': '/',
 }
+
+MORSE_TO_TEXT = {code: char for char, code in MORSE_CODE.items()}
+
 if __name__ == "__main__":
     main()
