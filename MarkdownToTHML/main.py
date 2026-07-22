@@ -93,6 +93,23 @@ def convert_markdown(markdown_text):
 
     close_list()
     return "\n".join(html_lines)
+
+
+def wrap_html_page(title, body):
+    return f"""<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>{html.escape(title)}</title>
+<style>{CSS}</style>
+</head>
+<body>
+{body}
+</body>
+</html>
+"""
+
+
 def build_parser():
     parser = argparse.ArgumentParser(description="Convert a Markdown file to a styled HTML file.")
     parser.add_argument("input", help="Path to the input .md file")
