@@ -117,5 +117,13 @@ def build_parser():
     parser.add_argument("-t", "--title", help="Title for the HTML page (default: input filename)")
     return parser
 
+
+def main():
+    parser = build_parser()
+    args = parser.parse_args()
+
+    print(f"Converted '{args.input}' -> '{output_path}'")
+
+
 if __name__ == "__main__":
     main()
