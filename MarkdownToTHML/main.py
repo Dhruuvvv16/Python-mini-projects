@@ -24,5 +24,11 @@ def convert_inline(text):
     text = re.sub(r"\[([^\]]+)\]\(([^)]+)\)", r'<a href="\2">\1</a>', text)
     return text
 
+
+def convert_markdown(markdown_text):
+    lines = markdown_text.splitlines()
+    html_lines = []
+    in_code_block = False
+    list_type = None  # "ul" or "ol"
 if __name__ == "__main__":
     main()
