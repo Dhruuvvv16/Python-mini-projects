@@ -36,5 +36,8 @@ def morse_to_text(morse):
         else:
             result.append("?")
     return "".join(result)
+def main():
+
+
 if __name__ == "__main__":
     main()
