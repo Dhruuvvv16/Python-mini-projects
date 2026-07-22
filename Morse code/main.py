@@ -23,5 +23,9 @@ def text_to_morse(text):
         else:
             symbols.append("?")
     return " ".join(symbols)
+
+
+def morse_to_text(morse):
+    return "".join(result)
 if __name__ == "__main__":
     main()
