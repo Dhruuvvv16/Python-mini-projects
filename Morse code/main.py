@@ -41,6 +41,24 @@ def main():
     print("   MORSE CODE TRANSLATOR")
     print("=" * 40)
 
+    while True:
+        print("\n1. Text to Morse")
+        print("2. Morse to Text")
+        print("3. Quit")
+        choice = input("Choose an option (1-3): ").strip()
+
+        if choice == "1":
+            text = input("Enter text: ")
+            print(f"\nMorse: {text_to_morse(text)}")
+        elif choice == "2":
+            morse = input("Enter Morse code (letters separated by spaces, '/' for word gaps): ")
+            print(f"\nText: {morse_to_text(morse)}")
+        elif choice == "3":
+            print("Goodbye!")
+            break
+        else:
+            print("Invalid option, try again.")
+
 
 if __name__ == "__main__":
     main()
