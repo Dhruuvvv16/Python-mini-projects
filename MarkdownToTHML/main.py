@@ -122,6 +122,13 @@ def main():
     parser = build_parser()
     args = parser.parse_args()
 
+    try:
+        with open(args.input, "r", encoding="utf-8") as f:
+            markdown_text = f.read()
+    except FileNotFoundError:
+        print(f"Could not find file: {args.input}")
+        return
+
     print(f"Converted '{args.input}' -> '{output_path}'")
 
 
