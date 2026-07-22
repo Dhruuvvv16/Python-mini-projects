@@ -129,6 +129,14 @@ def main():
         print(f"Could not find file: {args.input}")
         return
 
+    body = convert_markdown(markdown_text)
+    title = args.title or args.input.rsplit("/", 1)[-1].rsplit(".", 1)[0]
+    page = wrap_html_page(title, body)
+
+    output_path = args.output or args.input.rsplit(".", 1)[0] + ".html"
+    with open(output_path, "w", encoding="utf-8") as f:
+        f.write(page)
+
     print(f"Converted '{args.input}' -> '{output_path}'")
 
 
