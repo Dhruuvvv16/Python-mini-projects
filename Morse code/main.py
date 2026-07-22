@@ -36,6 +36,8 @@ def morse_to_text(morse):
         else:
             result.append("?")
     return "".join(result)
+
+
 def main():
     print("=" * 40)
     print("   MORSE CODE TRANSLATOR")
