@@ -14,5 +14,15 @@ pre code { background: none; padding: 0; }
 a { color: #0969da; }
 blockquote { border-left: 3px solid #ccc; margin: 0; padding-left: 16px; color: #555; }
 """
+
+
+def convert_inline(text):
+    text = html.escape(text)
+    text = re.sub(r"`([^`]+)`", r"<code>\1</code>", text)
+    text = re.sub(r"\*\*([^*]+)\*\*", r"<strong>\1</strong>", text)
+    text = re.sub(r"\*([^*]+)\*", r"<em>\1</em>", text)
+    text = re.sub(r"\[([^\]]+)\]\(([^)]+)\)", r'<a href="\2">\1</a>', text)
+    return text
+
 if __name__ == "__main__":
     main()
