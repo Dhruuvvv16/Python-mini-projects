@@ -35,5 +35,13 @@ def main():
     print("\n" + "=" * 40)
     print(f"Stopped. Total time: {format_seconds(total_time)}")
     if laps:
+        print("\nLap times:")
+        for i, lap in enumerate(laps, start=1):
+            print(f"  Lap {i}: {format_seconds(lap)}")
+        print(f"\nFastest lap: {format_seconds(min(laps))}")
+        print(f"Slowest lap: {format_seconds(max(laps))}")
+    print("=" * 40)
+
+
 if __name__ == "__main__":
     main()
