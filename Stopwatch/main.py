@@ -29,5 +29,11 @@ def main():
         laps.append(elapsed_lap)
         last_lap_time = now
         print(f"Lap {len(laps)}: {format_seconds(elapsed_lap)}   "
+              f"(total: {format_seconds(elapsed_total)})")
+
+    total_time = time.time() - start_time
+    print("\n" + "=" * 40)
+    print(f"Stopped. Total time: {format_seconds(total_time)}")
+    if laps:
 if __name__ == "__main__":
     main()
